@@ -1,5 +1,6 @@
 import { mutator, action } from 'satcheljs';
 import selectCategory from '../actions/selectCategory';
+import updateNewCarNameEditState from '../actions/updateNewCarNameEditState';
 import selectBook from '../actions/selectBook';
 import { selectBookInCart, finishBuying } from '../actions/cart';
 import getStore from '../store/store';

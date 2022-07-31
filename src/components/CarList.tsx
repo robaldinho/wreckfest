@@ -23,7 +23,8 @@ export default observer(function CarList() {
                         key={car.name}
                         className={cx({ selected: selectedCategoryId == car.name }, 'selectable')}>
                         <div style={{ display: 'flex' }}>
-                            {car.name}
+                            {car.name + ' '}
+                            {car.speedRating}
                             <button
                                 className={cx('cellButton')}
                                 onClick={e => {

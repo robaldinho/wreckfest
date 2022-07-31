@@ -15,6 +15,7 @@ export interface BookStore {
     selectedBookId: string | null;
     selectedCategoryId: string;
     cart: Cart;
+    newCarEditState: NewCarEditState;
 }
 
 export interface Book {
@@ -44,6 +45,11 @@ export interface Cart {
     }[];
     selectedBookId: string | null;
     isBuying: boolean;
+}
+
+export interface NewCarEditState {
+    name?: string;
+    perf?: number;
 }
 
 export const sampleData: BookStore = {
@@ -143,5 +149,9 @@ export const sampleData: BookStore = {
         books: [],
         selectedBookId: null,
         isBuying: false,
+    },
+    newCarEditState: {
+        name: '',
+        perf: undefined,
     },
 };

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 import { dispatch } from 'satcheljs';
 import getStore from '../store/store';
-import RaceList from './RaceList';
+import TrackList from './TrackList';
 import Cart from './Cart';
 import CarList from './CarList';
 import Description from './Description';
@@ -36,7 +36,7 @@ export default observer(() => {
                 <div>
                     <div style={{ display: 'flex' }}>
                         <CarList />
-                        <RaceList />
+                        <TrackList />
                     </div>
                     <div style={{ display: 'flex', padding: '50px 0 0 0' }}>
                         <form onSubmit={handleSubmit} style={{ display: 'block' }}>

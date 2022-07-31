@@ -8,14 +8,13 @@ export interface BookStore {
     cars: {
         [id: string]: Car;
     };
-    tracks: {
-        [id: string]: Track;
-    };
+    tracks: Track[];
     newCars: Car[];
     selectedBookId: string | null;
     selectedCategoryId: string;
     cart: Cart;
     newCarEditState: NewCarEditState;
+    raceList: Race[];
 }
 
 export interface Book {
@@ -28,6 +27,16 @@ export interface Book {
 export interface Car {
     name: string;
     speedRating: number;
+}
+
+export interface Race {
+    track: Track;
+    timeInMs: number;
+    bestLapInMs: number;
+    car: Car;
+    notes?: string;
+    finishingPosition?: number;
+    numberOfRacers?: number;
 }
 
 export interface Track {
@@ -125,14 +134,14 @@ export const sampleData: BookStore = {
             speedRating: 344,
         },
     },
-    tracks: {
-        '1': {
+    tracks: [
+        {
             name: 'Fire Rock Raceway',
         },
-        '2': {
+        {
             name: 'Firwood Motocenter',
         },
-    },
+    ],
     newCars: [
         {
             name: 'Bulldog',
@@ -154,4 +163,5 @@ export const sampleData: BookStore = {
         name: '',
         perf: undefined,
     },
+    raceList: [],
 };

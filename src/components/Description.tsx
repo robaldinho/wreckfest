@@ -10,7 +10,7 @@ const cx = classnames.bind(require('./AppStyles.css'));
 export default observer(function Description() {
     const store = getStore();
     const selectedBookId = getSelectedBookId();
-    const book = selectedBookId !== null && store.tracks[selectedBookId];
+    const book = selectedBookId !== null && store.tracks[Number(selectedBookId)];
 
     return (
         <div className={cx('description')}>

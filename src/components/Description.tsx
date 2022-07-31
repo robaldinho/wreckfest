@@ -4,6 +4,7 @@ import getStore from '../store/store';
 import getSelectedBookId from '../selectors/getSelectedBookId';
 import { addCar } from '../actions/cart';
 import * as classnames from 'classnames/bind';
+import { PrimaryButton } from '@fluentui/react';
 
 const cx = classnames.bind(require('./AppStyles.css'));
 
@@ -18,7 +19,9 @@ export default observer(function Description() {
             {'Personal Record: 0:55.758'}
             {selectedBookId && (
                 <div>
-                    <button onClick={() => addCar(selectedBookId!, 0)}>Add race</button>
+                    <PrimaryButton onClick={() => addCar(selectedBookId!, 0)}>
+                        Add race
+                    </PrimaryButton>
                 </div>
             )}
         </div>

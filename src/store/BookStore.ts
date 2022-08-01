@@ -5,15 +5,13 @@ export interface BookStore {
     categories: {
         [id: string]: Category;
     };
-    cars: {
-        [id: string]: Car;
-    };
     tracks: Track[];
     newCars: Car[];
     selectedBookId: string | null;
     selectedCategoryId: string;
     cart: Cart;
     newCarEditState: NewCarEditState;
+    newRaceEditState: Race;
     raceList: Race[];
 }
 
@@ -26,17 +24,59 @@ export interface Book {
 
 export interface Car {
     name: string;
-    speedRating: number;
+    speedRating?: number;
+    tune: Tune;
+}
+
+export interface Tune {
+    suspension: Suspension;
+    gearRatio: GearRatio;
+    differential: Differential;
+    brakeBalance: BrakeBalance;
+}
+
+export enum Suspension {
+    Soft,
+    SoftStandard,
+    Standard,
+    StandardStiff,
+    StiffStandard,
+}
+
+export enum GearRatio {
+    Short,
+    ShortStandard,
+    Standard,
+    StandardLong,
+    Long,
+}
+
+export enum Differential {
+    Open,
+    OpenLimited,
+    Limited,
+    LimitedLocked,
+    Locked,
+}
+
+export enum BrakeBalance {
+    Rear,
+    RearMiddle,
+    Middle,
+    MiddleFront,
+    Front,
 }
 
 export interface Race {
     track: Track;
-    timeInMs: number;
-    bestLapInMs: number;
+    timeInMs?: string;
+    numberOfLaps?: string;
+    bestLapInMs?: string;
     car: Car;
     notes?: string;
     finishingPosition?: number;
     numberOfRacers?: number;
+    isBestLapPr?: boolean;
 }
 
 export interface Track {
@@ -104,36 +144,7 @@ export const sampleData: BookStore = {
             name: 'Science Fiction',
         },
     },
-    cars: {
-        '1': {
-            name: 'Bulldog',
-            speedRating: 350,
-        },
-        '2': {
-            name: 'RoadSlayer GT',
-            speedRating: 317,
-        },
-        '3': {
-            name: 'RoadSlayer GT',
-            speedRating: 317,
-        },
-        '4': {
-            name: 'Speedbird',
-            speedRating: 357,
-        },
-        '5': {
-            name: 'Sunrise Super',
-            speedRating: 346,
-        },
-        '6': {
-            name: 'Super Venom',
-            speedRating: 364,
-        },
-        '7': {
-            name: 'Venom',
-            speedRating: 344,
-        },
-    },
+
     tracks: [
         {
             name: 'Fire Rock Raceway',
@@ -146,10 +157,22 @@ export const sampleData: BookStore = {
         {
             name: 'Bulldog',
             speedRating: 350,
+            tune: {
+                suspension: Suspension.Standard,
+                gearRatio: GearRatio.Standard,
+                differential: Differential.Limited,
+                brakeBalance: BrakeBalance.Middle,
+            },
         },
         {
             name: 'Super Venom',
             speedRating: 364,
+            tune: {
+                suspension: Suspension.Standard,
+                gearRatio: GearRatio.Standard,
+                differential: Differential.Limited,
+                brakeBalance: BrakeBalance.Middle,
+            },
         },
     ],
     selectedCategoryId: 'Bulldog',
@@ -163,5 +186,29 @@ export const sampleData: BookStore = {
         name: '',
         perf: undefined,
     },
+    newRaceEditState: {
+        track: {
+            name: '',
+        },
+        timeInMs: undefined,
+        bestLapInMs: undefined,
+        car: {
+            name: '',
+            speedRating: undefined,
+            tune: {
+                suspension: Suspension.Standard,
+                gearRatio: GearRatio.Standard,
+                differential: Differential.Limited,
+                brakeBalance: BrakeBalance.Middle,
+            },
+        },
+    },
     raceList: [],
 };
+// track: Track;
+// timeInMs: number;
+// bestLapInMs: number;
+// car: Car;
+// notes?: string;
+// finishingPosition?: number;
+// numberOfRacers?: number;

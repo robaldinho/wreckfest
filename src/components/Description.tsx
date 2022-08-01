@@ -5,6 +5,8 @@ import getSelectedBookId from '../selectors/getSelectedBookId';
 import { addCar } from '../actions/cart';
 import * as classnames from 'classnames/bind';
 import { PrimaryButton } from '@fluentui/react';
+import NewRaceForm from './NewRaceForm';
+import { Race } from '../store/BookStore';
 
 const cx = classnames.bind(require('./AppStyles.css'));
 
@@ -12,18 +14,32 @@ export default observer(function Description() {
     const store = getStore();
     const selectedBookId = getSelectedBookId();
     const book = selectedBookId !== null && store.tracks[Number(selectedBookId)];
-
+    console.log('race');
+    console.log(store.raceList);
+    //let race = store.raceList[0];
     return (
         <div className={cx('description')}>
-            {book && <h2>{book.name}</h2>}
-            {'Personal Record: 0:55.758'}
-            {selectedBookId && (
-                <div>
-                    <PrimaryButton onClick={() => addCar(selectedBookId!, 0)}>
-                        Add race
-                    </PrimaryButton>
-                </div>
-            )}
+            <h2>Race List</h2>
+            {store.raceList.map((race: Race) => {
+                return (
+                    <div>
+                        <p>{'Track: ' + race.track.name} </p>
+                        <p>
+                            {'Laps: ' +
+                                race.numberOfLaps +
+                                ' Time: ' +
+                                race.timeInMs +
+                                '   Best Lap: ' +
+                                race.bestLapInMs}{' '}
+                        </p>
+                        <p>{'Car: ' + race.car.name + ' ' + race.car.speedRating} </p>
+                        <p>
+                            {'_________________________________________________________________'}{' '}
+                        </p>
+                    </div>
+                );
+            })}
+            <NewRaceForm />
         </div>
     );
 });

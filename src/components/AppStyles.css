@@ -3,24 +3,33 @@ html, body {
     padding: 0;
     margin: 0;
     color: teal;
-    background-color: black;
+    background-color: darkgrey;
 
 }
 
 #app {
      width: 95%;
      margin: 2rem auto;
-     background-color: black;
+     background-color: darkgrey;
 }
 
 .title {
-    background-color: black;
     color: teal;
     text-align: center;
     padding: 24px;
     font-size: 42px;
     border-bottom: 2px solid teal;
     font-style: bold;
+}
+
+.title2 {
+    background-color: black;
+    color: teal;
+    text-align: center;
+}
+
+.nav {
+    padding-left: 200px;
 }
 
 .img {
@@ -54,7 +63,7 @@ html, body {
 }
 
 .description {
-    width: auto;
+    width: 420px;
 }
 
 .cellButton {

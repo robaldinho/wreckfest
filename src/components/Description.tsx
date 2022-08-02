@@ -39,7 +39,7 @@ export default observer(function Description() {
                     </div>
                 );
             })}
-            <NewRaceForm />
+            {/* <NewRaceForm /> */}
         </div>
     );
 });

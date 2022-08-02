@@ -14,6 +14,11 @@ export let updateNewRaceBestLap = action('updateNewRaceBestLap', (bestLap: strin
     bestLap,
 }));
 export let updateNewRaceCar = action('updateNewRaceCar', (car: Car) => ({ car }));
+export let onLoadRaceList = action('onLoadRaceList', (races: string) => ({
+    races,
+}));
+
+export let updateTrackJSON = action('updateTrackJSON', (json: string) => ({ json }));
 
 // export let addCar = action('addCar', (name: string, perf: number) => ({ name, perf }));
 // export let removeBookFromCart = action('removeBookFromCart', (car: Car) => ({ car }));

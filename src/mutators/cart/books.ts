@@ -7,6 +7,8 @@ import {
     updateNewRaceBestLap,
     updateNewRaceCar,
     updateNewRaceNumberOfLaps,
+    onLoadRaceList,
+    updateTrackJSON,
 } from '../../actions/newRaceActions';
 import { BrakeBalance, Car, Differential, GearRatio, Suspension } from '../../store/BookStore';
 
@@ -61,9 +63,21 @@ mutator(updateNewRaceNumberOfLaps, msg => {
     store.newRaceEditState.numberOfLaps = msg.laps;
 });
 
+mutator(onLoadRaceList, msg => {
+    const store = getStore();
+    store.raceList = JSON.parse(msg.races);
+});
+
+mutator(updateTrackJSON, msg => {
+    const store = getStore();
+    store.raceListJSON = msg.json;
+});
+
 mutator(addRace, msg => {
     const store = getStore();
     store.raceList.push(msg.race);
+    store.raceListJSON = '';
+
     store.newRaceEditState = {
         track: {
             name: '',
@@ -86,6 +100,7 @@ mutator(addRace, msg => {
 mutator(updateNewRaceTrackName, msg => {
     const store = getStore();
     store.newRaceEditState.track.name = msg.trackName;
+    //store.raceListJSON = msg.trackName;
 });
 
 mutator(updateNewRaceTotalTime, msg => {

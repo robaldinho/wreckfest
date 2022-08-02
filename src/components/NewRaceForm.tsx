@@ -6,12 +6,14 @@ import {
     updateNewRaceBestLap,
     updateNewRaceCar,
     updateNewRaceNumberOfLaps,
+    onLoadRaceList,
+    updateTrackJSON,
 } from '../actions/newRaceActions';
 import { observer } from 'mobx-react';
 import * as classnames from 'classnames/bind';
 import { Car, Track } from '../store/BookStore';
 import { TextField, ITextFieldStyles, MaskedTextField } from '@fluentui/react/lib/TextField';
-import { IStackProps, PrimaryButton, Stack } from '@fluentui/react';
+import { DefaultButton, IStackProps, PrimaryButton, Stack } from '@fluentui/react';
 import { addRace } from '../actions/cart';
 const columnProps: Partial<IStackProps> = {
     tokens: { childrenGap: 15 },
@@ -53,20 +55,24 @@ export default observer(function NewRaceForm() {
     // ];
 
     console.log(store.newRaceEditState);
-    //const [firstTextFieldValue, setFirstTextFieldValue] = React.useState('');
     function onChangeTrackName(
         event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
         newValue?: string
     ) {
-        //setFirstTextFieldValue(newValue || '');
         updateNewRaceTrackName(newValue || '');
+        //updateTrackJSON(newValue || '');
+    }
+    function onChangeTrackJson(
+        event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
+        newValue?: string
+    ) {
+        updateTrackJSON(newValue || '');
     }
 
     function onChangeTotalRaceTime(
         event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
         newValue?: string
     ) {
-        //setFirstTextFieldValue(newValue || '');
         updateNewRaceTotalTime(newValue || '');
     }
 
@@ -74,7 +80,6 @@ export default observer(function NewRaceForm() {
         event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
         newValue?: string
     ) {
-        //setFirstTextFieldValue(newValue || '');
         updateNewRaceNumberOfLaps(newValue || '');
     }
 
@@ -82,7 +87,6 @@ export default observer(function NewRaceForm() {
         event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
         newValue?: string
     ) {
-        //setFirstTextFieldValue(newValue || '');
         updateNewRaceBestLap(newValue || '');
     }
 
@@ -101,6 +105,8 @@ export default observer(function NewRaceForm() {
 
     return (
         <div className={cx('books')}>
+            <h2>New race</h2>
+
             <Stack {...columnProps}>
                 <TextField
                     label="Track Name"
@@ -141,6 +147,27 @@ export default observer(function NewRaceForm() {
                 <PrimaryButton onClick={() => addRace(store.newRaceEditState)}>
                     Add race
                 </PrimaryButton>
+
+                <DefaultButton
+                    onClick={() => {
+                        navigator.clipboard.writeText(JSON.stringify(store.raceList));
+                    }}>
+                    SaveRaceLst
+                </DefaultButton>
+
+                <TextField
+                    label="TrackJSON"
+                    value={store.raceListJSON}
+                    onChange={onChangeTrackJson}
+                    styles={textFieldStyles}
+                />
+
+                <DefaultButton
+                    onClick={() => {
+                        onLoadRaceList(store.raceListJSON);
+                    }}>
+                    LoadRaceLst
+                </DefaultButton>
             </Stack>
         </div>
     );

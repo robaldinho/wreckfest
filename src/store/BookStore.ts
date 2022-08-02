@@ -13,6 +13,7 @@ export interface BookStore {
     newCarEditState: NewCarEditState;
     newRaceEditState: Race;
     raceList: Race[];
+    raceListJSON: string;
 }
 
 export interface Book {
@@ -77,6 +78,7 @@ export interface Race {
     finishingPosition?: number;
     numberOfRacers?: number;
     isBestLapPr?: boolean;
+    json?: string;
 }
 
 export interface Track {
@@ -204,6 +206,7 @@ export const sampleData: BookStore = {
         },
     },
     raceList: [],
+    raceListJSON: '',
 };
 // track: Track;
 // timeInMs: number;
